@@ -1,11 +1,10 @@
 # TwiitterWikidata
 Project identifying if a correlation exists between live streamed Twitter hashtags and Wikidata revisions.
 
-###################################################
-#
+
 # Part 1 Twitter Data Live Streaming  
-#
-####################################################
+
+
 #https://www.tweepy.org/
 1. Install visual studio code
 2. Run 'pip install tweepy' to install tweepy that required to stream live twitter data
@@ -28,11 +27,9 @@ Project identifying if a correlation exists between live streamed Twitter hashta
 12. The data will be streamed to the folder tweets. An example of the initial file and overflow file has been added as a sample within the tweets folder of this project. If an error occurs streaming the data the data will auto start again starting with the file 'myprefix.<date-time>.json' and the overflow file 'streamer.<date-time>.json'
 
 
-###################################################
-#
+
 # Part 2 Twitter data parsing
-#
-###################################################
+
 
 1. wordsonly1.py    - FROM  'streamtwitter/tweets' folder   ->   TO 'tweetwords' folder 
 * Take the tweets files '.json' format tweets and parses the tweet removing the hashtag, removing non ASKII characters, validating the line contains at least 2 characters and placing the content in the 'tweetwords' folder with file format 'Words_Only.<date>.csv' for additional processing. If the number of words added to the file is greater than or equal to 5000 a new file is created or if the end of the .json file is reached.
@@ -59,7 +56,7 @@ This implementation breaks up the big n-ngrams. Each line is processed separatel
 
 
 
-1.  Remove spacing from the each of the n-gram output from step 4 before counting occurrences in each of the n-grams
+5.  Remove spacing from the each of the n-gram output from step 4 before counting occurrences in each of the n-grams
    
 * Nothing to do for one words ones 1ngrams   # no change
 * removespacesgrams2.py     FROM ngrams2 folder  TO nspacesngram2                    
@@ -85,11 +82,9 @@ This implementation breaks up the big n-ngrams. Each line is processed separatel
 
 
 
-###################################################
-#
+
 # Part 3 Wikidata xml revision parsing
-#
-###################################################
+
 
 
 1. Download python latest version for windows from here https://www.python.org/downloads/  for example click the yellow button 3.7.3
@@ -97,34 +92,32 @@ This implementation breaks up the big n-ngrams. Each line is processed separatel
 3. Select the custom option and then select the location item and add to c:python as the location (navigate to the location but create the folder python in c:/ first)
 
 4. Download pip by running the following from a dos prompt 'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py'
-6. Once finished run the following from the same command prompt 'python get-pip.py'
+5. Once finished run the following from the same command prompt 'python get-pip.py'
 
-7. Navigate your dos prompt to C:/python/scripts and run 'pip install SPARQLWrapper'
-8. Download visual studio code https://visualstudio.microsoft.com/vs/
+6. Navigate your dos prompt to C:/python/scripts and run 'pip install SPARQLWrapper'
+7. Download visual studio code https://visualstudio.microsoft.com/vs/
 
-9. Create a new project folder on your cdrive   C:\CC\TwiitterWikidata and add the subfolders '\wikidata\parsewikidata'
-10. The project python file 'parsexml.py' is added to the project and this will parse the wikidata xml file containing the revision data
-11. The parsed data is added to a new additional folder here 'data'
-12. Go to this site https://dumps.wikimedia.org/wikidatawiki/<wikidata dump date>/  (the selected date to download the wikidata dumps containing the wikidata metadata revision files)
+8. Create a new project folder on your cdrive   C:\CC\TwiitterWikidata and add the subfolders '\wikidata\parsewikidata'
+9.  The project python file 'parsexml.py' is added to the project and this will parse the wikidata xml file containing the revision data
+10. The parsed data is added to a new additional folder here 'data'
+11. Go to this site https://dumps.wikimedia.org/wikidatawiki/<wikidata dump date>/  (the selected date to download the wikidata dumps containing the wikidata metadata revision files)
         Download each wikidata dump xml files for parsing for example wikidatawiki-20190601-stub-meta-history1.xml.gz  
         Select each one and unzip to a location - u will get an xml file  E.G. c:/wikidata/
         Now start visual studio code from your start menu
         On the console you will see add folder - navigate to C:\CC\TwiitterWikidata and open
 
-13. Ready to run the code
-14. To run the code select 'terminal - new terminal' on the top menus in visual studio code- this will open a cmd terminal at the bottom of the page
-15. Navigate to the location C:\CC\TwiitterWikidata\wikidata\parsewikidata 
-16. Enter the command  'python parsexml.py' and run it.
+12. Ready to run the code
+13. To run the code select 'terminal - new terminal' on the top menus in visual studio code- this will open a cmd terminal at the bottom of the page
+14. Navigate to the location C:\CC\TwiitterWikidata\wikidata\parsewikidata 
+15. Enter the command  'python parsexml.py' and run it.
 16. You will see number output on the command prompt. This is a print out statement within the code showing the count of the number of revision items processed and can be comment out if not required within the code but validates the xml file is being processed successfully.
 17. Additionlly the output for the processed data can be seen in the output witin the data folder .csv file that with 1 row per processed revision located in.  The data output is in the format "'pageid', 'pagetitle',  'label', 'revisionid', 'timestamp', 'comment', 'parentid'"
 
 
 
-###################################################
-#
+
 # Part 4 Wikidata processing
-#
-###################################################
+
 
 Having completed Part 3 of the process above where data is added to 'data' folder
 Next step is to extract the 3rd element from the list - remove the spaces and add to a files
@@ -137,11 +130,9 @@ Next step is to extract the 3rd element from the list - remove the spaces and ad
 
 
 
-###################################################
-#
+
 # Part 5 Twitter and Wikidata analysis
-#
-###################################################
+
 
 1. Calculate Jaccards Distance, Jaccards Similarity, kolmogorov-smirnov statistic value and kolmogorov-smirnov p-value
 
@@ -171,14 +162,14 @@ Manually create the file as follows  - Take the values in results from the finis
 * wikiandtwitter4.csv => (column 1) orderedresultsngram4 (column 2) wikidatafinal
 
 
-** Statistics for Jaccards ratio charts includes **
+**Statistics for Jaccards ratio charts includes**
 * run python jaccardfinal.py   - output to file graphs/jacartadistance1.csv)  => plot this TODO://
 * run python jaccardfinal.py   - output to file graphs/jacartadistance2.csv)  => plot this TODO://
 * run python jaccardfinal.py   - output to file graphs/jacartadistance3.csv)  => plot this TODO://
 * run python jaccardfinal.py   - output to file graphs/jacartadistance4.csv)  => plot this TODO://
 
 
-** Charts **
+**Charts**
 * (One list for wikidata (always same)), one list for twitter per ngram list from files ngramschartsFOUR.py, ngramschartsTHREE.PY,ngramsChartsFour.py, ngramschartsONE.py)
 * BarChartNGrams1Hashtags.py
 * BarChartNGrams2Hashtags.py

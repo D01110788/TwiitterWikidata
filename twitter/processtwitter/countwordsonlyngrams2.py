@@ -21,9 +21,9 @@ from nltk.corpus import stopwords
 # Defines the date 15th March 2019 the tweets are considered from
 start_time = time.time()
 d2 = datetime.datetime(2019, 3, 15)
+d22 = datetime.datetime(d2.year, d2.month, d2.day)
 
 # Define the folder directory where the date is extracted to.
-d22 = datetime.datetime(d2.year, d2.month, d2.day)
 here = os.path.dirname(os.path.realpath(__file__))
 subdir = "ngramscount2"
 

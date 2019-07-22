@@ -1,4 +1,6 @@
-#In [1]:
+#This contains the functions to run the Jaccard's Similarity  Jaccard's  distance, 
+# kolmogorov-smirnov p-value and kolmogorov-smirnov statistical value for 
+
 
 from scipy import stats
 from scipy.stats import ks_2samp

@@ -2,6 +2,7 @@
 from tweepy import StreamListener
 import json, time, sys
 
+
 class SListener(StreamListener):
 
     # Initiate the streamer process starting the counter at 0. the file is created starting 
@@ -11,7 +12,7 @@ class SListener(StreamListener):
         self.api = api
         self.counter = 0
         self.fprefix = fprefix
-        self.output  = open(fprefix + '.'  + time.strftime('%Y%m%d-%H%M%S') + '.json', 'w')
+        self.output  = open('C:/CC/TwiitterWikidata/twitter/streamtwitter/tweets/' + fprefix + '.'  + time.strftime('%Y%m%d-%H%M%S') + '.json', 'w')
         self.delout  = open('deletefile.txt', 'a')
 
     # Function to handle the data where if data the on_status method is called to write the data
@@ -40,7 +41,7 @@ class SListener(StreamListener):
         # a writable to file. Reset the counter back to 0 to begin counting for the new file.
         if self.counter == 500:
             self.output.close()
-            self.output  = open('streamer' + '.' + time.strftime('%Y%m%d-%H%M%S') + '.json', 'w')
+            self.output  = open('C:/CC/TwiitterWikidata/twitter/streamtwitter/tweets/' +'streamer' + '.' + time.strftime('%Y%m%d-%H%M%S') + '.json', 'w')
             self.counter = 0
         return
         

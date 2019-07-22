@@ -3,39 +3,41 @@ Project identifying if a correlation exists between live streamed Twitter hashta
 
 
 # Part 1 Twitter Data Live Streaming  
+Part 1 streams live twitter data and stored the results in .json files within the project structure. See website https://www.tweepy.org/ for more details on streaming twitter data.
 
-
-#https://www.tweepy.org/
 1. Install visual studio code
-2. Run 'pip install tweepy' to install tweepy that required to stream live twitter data
-3. Go to http://apps.twitter.com and create an app.
-4. The consumer keys and tokens are found within the application details page located located at https://dev.twitter.com/apps (found within the "OAuth settings")
-5. Add the account specific details for consumer key and secret within the file ssstreaming.py replacing the ****** value key and token with those obtained from twitter app.
+2. Create the directory structure C://CC on the machine 
+3. Assuming the use has a git account and gitbash installed (if working on windows) clone the project by running 'git clone https://github.com/D01110788/TwiitterWikidata.git' 
+4. From the command prompt within Visual Studio Code, run 'pip install tweepy' to install 'tweepy' that required to stream live twitter data.
+5. Create a twitter account then open the website http://apps.twitter.com and create a developer app.
+6. The consumer keys and tokens are found within the application details page located located at https://dev.twitter.com/apps (found within the "OAuth settings")
+7. Add the account specific details for consumer key and secret within the file ssstreaming.py of this project replacing the ****** value key and token with those obtained from twitter app.
    
          consumer_key="***************************"
          consumer_secret="*****************************************"
 
-6. After the step above, you will be redirected to your app's page.
-7. Create an access token under the the "Your access token" section.  The access tokens located in the application details page located at  https://dev.twitter.com/apps (found within the "Your access token") 
-8. Add access token and secret specific tokens within the file sstreaming.py replacing the ***** value token and secret with those obtained from the twitter app.
-9. 
+8. After the step above, you will be redirected to your app's page.
+9. Create an access token under the the "Your access token" section.  The access tokens located in the application details page located at  https://dev.twitter.com/apps (found within the "Your access token") 
+10. Add access token and secret specific tokens within the file sstreaming.py of this project replacing the ***** value token and secret with those obtained from the twitter app.
+11. 
          access_token="*****************************************"
          access_token_secret="****************************************"
 
-10. Navigate to C:\CC\TwiitterWikidata\twitter\streamtwitter
-11. Run 'python sstreaming.py
-12. The data will be streamed to the folder tweets. An example of the initial file and overflow file has been added as a sample within the tweets folder of this project. If an error occurs streaming the data the data will auto start again starting with the file 'myprefix.<date-time>.json' and the overflow file 'streamer.<date-time>.json'
+12. Navigate to C:\CC\TwiitterWikidata\twitter\streamtwitter
+13. Run 'python sstreaming.py
+14. The data will be streamed to the folder C:/CC/TwiitterWikidata/twitter/streamtwitter/tweets/. An example of the initial file and overflow file has been added as a sample within the tweets folder of this project. If an error occurs streaming the data the data will auto start again starting with the file 'myprefix.<date-time>.json' and the overflow file 'streamer.<date-time>.json'
 
 
 
 # Part 2 Twitter data parsing
 
+Part 2 parses the twitter live streamed data from Part 1 above storing the results within the project structure. This processing includes cleaning of the tweets by extracting the hashtags per tweet removing ASCII characters, removing strings of less than minimum length, splitting in to words, removing stop words of language English and storing the results for additional processing. TThe strings are split in preparation for applying n-grams. N-grams (1 to 4 is applied to the data). For each of the 4 n-gram output the spaces are stripped, hashtag occurrences are counted and ordered by the most frequent for further processing.
 
 1. wordsonly1.py    - FROM  'streamtwitter/tweets' folder   ->   TO 'tweetwords' folder 
 * Take the tweets files '.json' format tweets and parses the tweet removing the hashtag, removing non ASKII characters, validating the line contains at least 2 characters and placing the content in the 'tweetwords' folder with file format 'Words_Only.<date>.csv' for additional processing. If the number of words added to the file is greater than or equal to 5000 a new file is created or if the end of the .json file is reached.
 
 2. tokenisetwwitter2.py    -from tweetwords folder /  to tokenisedtweets2 folder
-* This process takes the hashtag full words from step 1 splits the word in to individual words based on the 'wordsegment' python implementation, converts the string to lower case, removes stop words using the python implementation 'stopwords' of the English language. The result lingth is validated greater than 2 and output to a new .csv file 'tokenise.<date-time>.csv' for further processing. 
+* This process takes the hashtag full words from step 1 splits the word in to individual words based on the 'wordsegment' python implementation, converts the string to lower case, removes stop words using the python implementation 'stopwords' of the English language. The result length is validated greater than 2 and output to a new .csv file 'tokenise.<date-time>.csv' for further processing. 
 
 3. tokenisetwwitter3.py   - from tokenisedtweets2 / to  tokenisetweets3 # break up big ngrams
 

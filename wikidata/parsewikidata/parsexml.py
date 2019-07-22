@@ -19,7 +19,7 @@ from io import open
 
 # Location of created .csv files output with the wikidat revision details including 
 # SPARQL API retrieved title
-subdir = "wikidataout"
+subdir = "data"
 here = os.path.dirname(os.path.realpath(__file__))
 def get_uri_from_wiki_id(wiki_id):
         returnLabel=''

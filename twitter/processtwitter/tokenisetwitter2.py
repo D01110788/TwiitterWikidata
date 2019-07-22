@@ -1,4 +1,9 @@
-import xml.etree.cElementTree as ET
+# This process takes the hashtag full words, splits the word in to individual words based on the
+# 'wordsegment' python implementation, converts the string to lower case, removes stop words 
+# using the python implementation 'stopwords' of the English language. The result length is 
+# validated greater than 2 and output to a new .csv file 'tokenise.<date-time>.csv' for 
+# further processing.
+
 import xml.etree.ElementTree as etree
 import os
 import string
@@ -22,12 +27,6 @@ from nltk import ngrams
 from nltk.corpus import stopwords
 
 
-# Defines the date 15th March 2019 the tweets are considered from
-start_time = time.time()
-d2 = datetime.datetime(2019, 3, 15)
-d22 = datetime.datetime(d2.year, d2.month, d2.day)
-
-
 # Define the folder directory where the date is extracted to.
 here = os.path.dirname(os.path.realpath(__file__))
 subdir = "tokenisedtweets2"
@@ -35,14 +34,6 @@ load()
 
 # Get the stop words of language English
 stopword_set = set(stopwords.words("english"))
-
-
-# Convert the data time to yyyy/mm/dd
-def convert_date_time(dt):
-    f = "%Y-%m-%dT%H:%M:%S%fZ"
-    dt1 = datetime.datetime.strptime(dt, f)
-    dt2 =  datetime.datetime(dt1.year, dt1.month, dt1.day)
-    return dt2
 
 
 # Create a new file
@@ -68,32 +59,18 @@ def closeoldfile(filename):
         print('OPENED')  
         return filename
 
-# Check if the line is empty with a string value of less than 1.
-def isLineEmpty(line):
-    return len(line.strip()) < 1 
-
 # Check the line content length contains at least 2 characters
 def isMinLengthLine(line):
     return len(line.strip()) > 2
+    
 
-#
-def getNGrams(text, n ):
-    n_grams = ngrams(word_tokenize(text), n)
-    return [ ' '.join(grams) for grams in n_grams]
-
-#
 def process_text(text): 
     text = text.lower()
     text = text.replace(',', '')
     text = text.replace('"', '')
     text = text.replace("'", '')
     text = text.replace("  ", ' ')
-    # Convert text string to a list of words
-    return text.split()
-
-# Add single quotes around a string     
-def addQuotes(s1):
-    return "'" + s1 + "'"   
+    return text.split() 
 
 # Function to remove stopwords
 def remove_stopwords(sen):    

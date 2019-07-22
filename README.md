@@ -31,17 +31,16 @@ Part 1 streams live twitter data and stored the results in .json files within th
 
 # Part 2 Twitter data parsing
 
-Part 2 parses the twitter live streamed data from Part 1 above storing the results within the project structure. This processing includes cleaning of the tweets by extracting the hashtags per tweet removing ASCII characters, removing strings of less than minimum length, splitting in to words, removing stop words of language English and storing the results for additional processing. TThe strings are split in preparation for applying n-grams. N-grams (1 to 4 is applied to the data). For each of the 4 n-gram output the spaces are stripped, hashtag occurrences are counted and ordered by the most frequent for further processing.
+Part 2 parses the twitter live streamed data from Part 1 above, storing the results within the project structure. This processing includes cleaning of the tweets by extracting the hashtags per tweet removing ASCII characters, removing strings of less than minimum length, splitting the tweets in to words, removing stop words of language English and storing the results for additional processing. The strings are split in preparation for applying n-grams. N-grams (1 to 4) is applied to the data. For each of the 4 n-gram output the spaces are stripped from the string, the hashtag occurrences are counted and ordered by the most frequent for further processing.
 
 1. wordsonly1.py    - FROM  'streamtwitter/tweets' folder   ->   TO 'tweetwords' folder 
-* Take the tweets files '.json' format tweets and parses the tweet removing the hashtag, removing non ASKII characters, validating the line contains at least 2 characters and placing the content in the 'tweetwords' folder with file format 'Words_Only.<date>.csv' for additional processing. If the number of words added to the file is greater than or equal to 5000 a new file is created or if the end of the .json file is reached.
+* Take the tweets files in '.json' format  and parses the tweet removing the hashtag, removing non ASCII characters, validate the line contains at least 2 characters and placing the content in the 'tweetwords' folder with file format 'Words_Only.<date>.csv' for additional processing. If the number of words added to the file is greater than or equal to 5000, a new file is created or if the end of the .json file is reached.
 
-2. tokenisetwwitter2.py    -from tweetwords folder /  to tokenisedtweets2 folder
+2. tokenisetwitter2.py    -from tweetwords folder /  to tokenisedtweets2 folder
 * This process takes the hashtag full words from step 1 splits the word in to individual words based on the 'wordsegment' python implementation, converts the string to lower case, removes stop words using the python implementation 'stopwords' of the English language. The result length is validated greater than 2 and output to a new .csv file 'tokenise.<date-time>.csv' for further processing. 
 
-3. tokenisetwwitter3.py   - from tokenisedtweets2 / to  tokenisetweets3 # break up big ngrams
-
-This implementation breaks up the big n-ngrams. Each line is processed separately - Firstly the line from the .csv file is read, and the sentence length in words is determined where a space indicates a new word. 
+3. tokenisetwitter3.py   - from tokenisedtweets2 / to  tokenisetweets3 =>  break up big ngrams
+* This implementation breaks up the big n-ngrams. Each line is processed separately - Firstly the line from the .csv file is read, and the sentence length in words is determined where a space indicates a new word. 
   
 * If the sentence length is less than 5 (equal to 4 words) print the full text to the new .csv file for further processing.
 *  If the sentence length is equal to 5 words split the string in to the first 3 words and the last 2 words and add both to the output file. Then take the first 2 words and last 3 words of the same entry and add them to the output file.
@@ -50,7 +49,6 @@ This implementation breaks up the big n-ngrams. Each line is processed separatel
 * If the sentence length is equal to 8 words split the string in to the first 4 words and the last 4 words and add both to the output file
 
 4. Apply n-grams (1-grams, 2-grams, 3-grams, 4-grams(no processing required this is the output file from previous step))
-
 * tokeniseengrams1.py - from tokenisetweets3 => to ngrams1 folder  => If the sentence length is equal 1 word add the word to the output file otherwise apply 1-grams to the text and output each word to the output file
 * tokeniseengrams2.py  - from tokenisetweets3 => to ngrams2 folder => If the sentence length is less than or equal to 2 word add the word to the output file otherwise apply 2-grams to the text and output each sentence to the output file.
 * tokeniseengrams3.py  - from tokenisetweets3 => to ngrams3 folder => If the sentence length is less than or equal to 3 word add the word to the output file otherwise apply 3-grams to the text and output each sentence to the output file.
@@ -60,13 +58,13 @@ This implementation breaks up the big n-ngrams. Each line is processed separatel
 
 5.  Remove spacing from the each of the n-gram output from step 4 before counting occurrences in each of the n-grams
    
-* Nothing to do for one words ones 1ngrams   # no change
+* Nothing to do for one words ones 1ngrams  # no change thre is no spaces in these words.
 * removespacesgrams2.py     FROM ngrams2 folder  TO nspacesngram2                    
 * removespacesngrams3.py     FROM ngrams3 folder  TO nspacesngram3
 * removespacesngrams4.py     FROM tokenisedtweets3 folder  TO nspacesngram4
 
 
-6. countwordsonly - Count the number of occurrences of each hashtag word to output files
+6. count words only - Count the number of occurrences of each hashtag word to output files (countwordsonly1.py initial test run file)
 
 * countwordsonlyngrams1.py     FROM ngrams1 folder  TO ngramscount1 
 * countwordsonlyngrams2.py     FROM nspacesngram2 folder  TO ngramscount2
@@ -74,7 +72,7 @@ This implementation breaks up the big n-ngrams. Each line is processed separatel
 * countwordsonlyngrams4.py     FROM nspacesngram4 folder  TO ngramscount4
 
 
-7. getmaxwords1.py   Orders the twitter results per n-gram folder based on those that occur most frequent
+7. get max words -  Orders the twitter results per n-gram folder based on those that occur most frequent (getmaxwords1.py initial test run file)
 
 * getmaxwordsngrams1.py   FROM ngramscount1 folder  TO orderedresultsngram1
 * getmaxwordsngrams2.py   FROM ngramscount2 folder  TO orderedresultsngram2
@@ -86,8 +84,6 @@ This implementation breaks up the big n-ngrams. Each line is processed separatel
 
 
 # Part 3 Wikidata xml revision parsing
-
-
 
 1. Download python latest version for windows from here https://www.python.org/downloads/  for example click the yellow button 3.7.3
 2. When installing select the checkbox to add to path

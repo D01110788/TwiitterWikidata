@@ -6,7 +6,6 @@
 
 # When the tweet hashtags are extracted fromthe tweet the tweet hashtags are extracted to a folder 
 # 'tweetwords' folder with file extension .csv for additional processing.
-
 import xml.etree.cElementTree as ET
 import xml.etree.ElementTree as etree
 import os
@@ -21,23 +20,9 @@ import json, time, sys
 import xml.etree.ElementTree as etree
 from SPARQLWrapper import SPARQLWrapper, JSON
 
-
-
-# Defines the date 15th March 2019 the tweets are considered from
-start_time = time.time()
-d2 = datetime.datetime(2019, 3, 15)
-d22 = datetime.datetime(d2.year, d2.month, d2.day)
-here = os.path.dirname(os.path.realpath(__file__))
-
 # Define the date tweets are extracted from.
+here = os.path.dirname(os.path.realpath(__file__))
 subdir = "tweetwords"
-
-# Concvert the data time to yyyy/mm/dd
-def convert_date_time(dt):
-    f = "%Y-%m-%dT%H:%M:%S%fZ"
-    dt1 = datetime.datetime.strptime(dt, f)
-    dt2 =  datetime.datetime(dt1.year, dt1.month, dt1.day)
-    return dt2
 
 # Create a new file
 def newfilecreation(filename, articlesWriter):
@@ -74,7 +59,7 @@ def remove_non_ascii_prinatble_from_list(list_of_words):
             if all(char in ascii_chars for char in word)]
 
 counter=0
-json_folder_path = os.path.join("D:\TwitterData")
+json_folder_path = os.path.join('C:/CC/TwiitterWikidata/twitter/streamtwitter/tweets/')
 # In order to get the list of all files that ends with ".json"
 # we will get list of all files, and take only the ones that ends with "json"
 json_files = [ x for x in os.listdir(json_folder_path) if x.endswith("json") ]
@@ -119,7 +104,6 @@ for json_file in json_files:
                            writer.writerow(values1)
                            counter += 1 
                            print(counter)
-                           #print(counter)
 
         except Exception as ex:
                print(ex)

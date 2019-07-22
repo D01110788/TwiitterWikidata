@@ -1,3 +1,5 @@
+#Count the number of occurrences of each hashtag word to output files.
+
 import xml.etree.cElementTree as ET
 import xml.etree.ElementTree as etree
 import os
@@ -18,21 +20,10 @@ import enchant, sys
 import nltk
 from nltk.corpus import stopwords
 
-# Defines the date 15th March 2019 the tweets are considered from
-start_time = time.time()
-d2 = datetime.datetime(2019, 3, 15)
-d22 = datetime.datetime(d2.year, d2.month, d2.day)
 
 # Define the folder directory where the date is extracted to.
 here = os.path.dirname(os.path.realpath(__file__))
 subdir = "ngramscount2"
-
-# Convert the data time to yyyy/mm/dd
-def convert_date_time(dt):
-    f = "%Y-%m-%dT%H:%M:%S%fZ"
-    dt1 = datetime.datetime.strptime(dt, f)
-    dt2 =  datetime.datetime(dt1.year, dt1.month, dt1.day)
-    return dt2
 
 # Create a new file
 def newfilecreation(filename, articlesWriter):
@@ -77,9 +68,6 @@ for csv_file in csv_files:
         filepath = os.path.join(here, subdir, 'count'+ '.csv')
         filename=open(filepath, 'w', newline='', encoding="utf-8")
         articlesWriter = csv.writer(filename, quoting=csv.QUOTE_MINIMAL)
-        #articlesWriter.writerow(['word', 'total'])
-        #word = ''
-        #total = ''
         fileCounter += 1 
     pathWikiXML = os.path.join(csv_folder_path, csv_file)
     print('##### OPEN NEW FILE ######')

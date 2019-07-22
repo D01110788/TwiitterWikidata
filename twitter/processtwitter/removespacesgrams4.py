@@ -58,25 +58,8 @@ def process_text(text):
     text = text.replace(' ', '')
     return text.split()
 
-# Add quotes to a string     
-def addQuotes(s1):
-    return "'" + s1 + "'"   
-
-# Remove all non letters from the hashtags
-ascii_chars = set(ascii_letters)
-def remove_non_ascii_prinatble_from_list(list_of_words):
-    return [word for word in list_of_words 
-            if all(char in ascii_chars for char in word)]
-
-# function to remove stopwords
-stopword_set = set(stopwords.words("english"))
-def remove_stopwords(sen):    
-    sen_new = " ".join([i for i in sen if i not in stopword_set])
-    return sen_new
-
-
 counter=0
-csv_folder_path = os.path.join("tokenisedtweets3")
+csv_folder_path = os.path.join("tokenisetweets3")
 # In order to get the list of all files that ends with ".csv"
 # we will get list of all files, and take only the ones that ends with "csv"
 csv_files = [ x for x in os.listdir(csv_folder_path) if x.endswith("csv") ]

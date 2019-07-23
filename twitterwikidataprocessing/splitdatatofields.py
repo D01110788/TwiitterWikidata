@@ -38,7 +38,8 @@ def process_text(text):
 subdir = "graphs"
 here = os.path.dirname(os.path.realpath(__file__))
 
-with open('./wikidataprocessed/order.20190613-130019.csv', 'r') as f:
+#with open('./wikidataprocessed/order.20190613-130019.csv', 'r') as f:
+with open('..\wikidata\processwikidata\wikidataprocessed\order20190613-130019.csv', 'r') as f:
         print('#####    TRY ######')
         read = csv.reader(f) 
         filepath = os.path.join(here, subdir, 'wikidatafinal' + '.csv')

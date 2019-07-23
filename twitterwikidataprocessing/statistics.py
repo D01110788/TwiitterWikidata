@@ -1,7 +1,5 @@
 #This contains the functions to run the Jaccard's Similarity  Jaccard's  distance, 
 # kolmogorov-smirnov p-value and kolmogorov-smirnov statistical value for 
-
-
 from scipy import stats
 from scipy.stats import ks_2samp
 import numpy as np
@@ -59,7 +57,6 @@ def process_text(text):
 
 wikidatalist=[]
 wikidataset={}
-
 twitterdatalist=[]
 twitterdataset={}
 
@@ -69,8 +66,8 @@ twitterdataset={}
 # < 3 revisions were removed from the wikidata list for processing as per SimplifiedList.
 def getWikidataList():
     #with open('./wikidata/processedwikidata/wikidataprocessed/order20190613-130019.csv', 'r') as f:
-    with open('./wikidata/processedwikidata/wikidataprocessed/SimplifiedList.csv', 'r') as f:
-        print('#####    TRY ######')
+    with open('..\wikidata\processwikidata\wikidataprocessed\SimplifiedList.csv', 'r') as f:
+        print('##### TRY ######')
         read = csv.reader(f) 
         next(read)
         for line in read:
@@ -79,12 +76,13 @@ def getWikidataList():
             #print(item1[0])
             wikidatalist.append(item1[0])
         #print(wikidatalist)
-        wikidataset = set(wikidatalist)
+        #wikidataset = set(wikidatalist)
         #print(wikidataset)
         return wikidatalist
 
 def getTwitterList1():
-    with open('./processtwitter/orderedresultsngram1/count.csv', 'r') as f:
+    #with open('./processtwitter/orderedresultsngram1/count.csv', 'r') as f:
+    with open('..\\twitter\processtwitter\orderedresultsngram1\count.csv', 'r') as f:
         print('#####    TRY ######')
         read = csv.reader(f) 
         next(read)
@@ -95,13 +93,14 @@ def getTwitterList1():
             twitterdatalist.append(item1[0])
         #print(twitterdatalist)
         #print(set(twitterdatalist))
-        twitterdataset = set(twitterdatalist)
+        #twitterdataset = set(twitterdatalist)
         #print(wikidataset)
         return twitterdatalist
 
 
 def getTwitterList2():
-    with open('./processtwitter/orderedresultsngram2/count.csv', 'r') as f:
+    #with open('./processtwitter/orderedresultsngram2/count.csv', 'r') as f:
+    with open('..\\twitter\processtwitter\orderedresultsngram2\count.csv', 'r') as f:
         print('#####    TRY ######')
         read = csv.reader(f) 
         next(read)
@@ -112,13 +111,14 @@ def getTwitterList2():
             twitterdatalist.append(item1[0])
         #print(twitterdatalist)
         #print(set(twitterdatalist))
-        twitterdataset = set(twitterdatalist)
+        #twitterdataset = set(twitterdatalist)
         #print(wikidataset)
         return twitterdatalist
 
 
 def getTwitterList3():
-    with open('./processtwitter/orderedresultsngram3/count.csv', 'r') as f:
+    #with open('./processtwitter/orderedresultsngram3/count.csv', 'r') as f:
+    with open('..\\twitter\processtwitter\orderedresultsngram3\count.csv', 'r') as f:
         print('#####    TRY ######')
         read = csv.reader(f) 
         next(read)
@@ -129,12 +129,13 @@ def getTwitterList3():
             twitterdatalist.append(item1[0])
         #print(twitterdatalist)
         #print(set(twitterdatalist))
-        twitterdataset = set(twitterdatalist)
+        #twitterdatasettwitterdataset = set(twitterdatalist)
         #print(wikidataset)
         return twitterdatalist
 
 def getTwitterList4():
-    with open('./processtwitter/orderedresultsngram4/count.csv', 'r') as f:
+    #with open('./processtwitter/orderedresultsngram4/count.csv', 'r') as f:
+    with open('..\\twitter\processtwitter\orderedresultsngram4\count.csv', 'r') as f:
         print('#####    TRY ######')
         read = csv.reader(f) 
         next(read)
@@ -145,7 +146,7 @@ def getTwitterList4():
             twitterdatalist.append(item1[0])
         #print(twitterdatalist)
         #print(set(twitterdatalist))
-        twitterdataset = set(twitterdatalist)
+        #twitterdataset = set(twitterdatalist)
         #print(wikidataset)
         return twitterdatalist
 
@@ -165,6 +166,10 @@ print('NGRAMS 1')
 ks_statistic, p_value = ks_2samp(wikidatalist, twitterData1)
 print(ks_statistic)
 print(p_value)
+
+#Sample output = 
+#0.06869303067890309
+#5.726436890827359e-181
 
 print('NGRAMS 2')
 ks_statistic, p_value = ks_2samp(wikidatalist, twitterData2)

@@ -26,6 +26,10 @@ from scipy.stats import ks_2samp
 import numpy as np
 import distance
 
+##
+## INPROGRESS
+##
+
 # Jaccard similarity per string
 def jaccard(a,b):
     a=a.split()

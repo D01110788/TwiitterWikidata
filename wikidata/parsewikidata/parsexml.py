@@ -89,7 +89,6 @@ def newfilecreation(filename, articlesWriter):
 
 # Function to close a file and open a new file to contain the revision output data
 def closeoldfile(filename):
-        #if counter ==10:
         print(filename)
         filename.flush()
         filename.close()
@@ -109,7 +108,7 @@ def closeoldfile(filename):
 
 
 counter=0
-wikidata_folder_path = os.path.join("C:\wikidata")
+wikidata_folder_path = os.path.join("C:\wikidata")      
 # In order to get the list of all files that ends with ".xml"
 # get list of all files, and consider only the ones that ends with "xml"
 wikidata_files = [ x for x in os.listdir(wikidata_folder_path) if x.endswith(".xml") ]

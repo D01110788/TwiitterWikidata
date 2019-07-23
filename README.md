@@ -29,7 +29,7 @@ Part 1 streams live twitter data and stored the results in .json files within th
 
 
 
-# Part 2 Twitter data parsing
+# Part 2 Twitter Data Parsing
 
 Part 2 parses the twitter live streamed data from Part 1 above, storing the results within the project structure. This processing includes cleaning of the tweets by extracting the hashtags per tweet removing ASCII characters, removing strings of less than minimum length, splitting the tweets in to words, removing stop words of language English and storing the results for additional processing. The strings are split in preparation for applying n-grams. N-grams (1 to 4) is applied to the data. For each of the 4 n-gram output the spaces are stripped from the string, the hashtag occurrences are counted and ordered by the most frequent for further processing.
 
@@ -81,28 +81,27 @@ Part 2 parses the twitter live streamed data from Part 1 above, storing the resu
 
 
 
-
-
-# Part 3 Wikidata xml revision parsing
+# Part 3 Wikidata XML Revision Parsing
 
 1. Download python latest version for windows from here https://www.python.org/downloads/  for example click the yellow button 3.7.3
 2. When installing select the checkbox to add to path
-3. Select the custom option and then select the location item and add to c:python as the location (navigate to the location but create the folder python in c:/ first)
-
+3. Select the custom option and then select the location item and add to c:python as the location (navigate to the location but create the folder python in the c:/ directory first)
 4. Download pip by running the following from a dos prompt 'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py'
 5. Once finished run the following from the same command prompt 'python get-pip.py'
+6. Navigate your DOS prompt to C:/python/scripts and run 'pip install SPARQLWrapper'
+   
 
-6. Navigate your dos prompt to C:/python/scripts and run 'pip install SPARQLWrapper'
-7. Download visual studio code https://visualstudio.microsoft.com/vs/
+7. Assume that visual studio code https://visualstudio.microsoft.com/vs/ has already been installed and the project code has already been cloned and as outlined in Part 1 above.
 
-8. Create a new project folder on your cdrive   C:\CC\TwiitterWikidata and add the subfolders '\wikidata\parsewikidata'
-9.  The project python file 'parsexml.py' is added to the project and this will parse the wikidata xml file containing the revision data
+
+8. Open a DOS prompt within visual studio code and navigate to C:\CC\TwiitterWikidata\twitter\streamtwitter
+9.  The project python file 'parsexml.py' exists on the project and this will parse the wikidata xml file containing the revision data
 10. The parsed data is added to a new additional folder here 'data'
 11. Go to this site https://dumps.wikimedia.org/wikidatawiki/<wikidata dump date>/  (the selected date to download the wikidata dumps containing the wikidata metadata revision files)
         Download each wikidata dump xml files for parsing for example wikidatawiki-20190601-stub-meta-history1.xml.gz  
         Select each one and unzip to a location - u will get an xml file  E.G. c:/wikidata/
         Now start visual studio code from your start menu
-        On the console you will see add folder - navigate to C:\CC\TwiitterWikidata and open
+        On the console you will see add folder - navigate to C:\CC\TwiitterWikidata 
 
 12. Ready to run the code
 13. To run the code select 'terminal - new terminal' on the top menus in visual studio code- this will open a cmd terminal at the bottom of the page
@@ -113,20 +112,19 @@ Part 2 parses the twitter live streamed data from Part 1 above, storing the resu
 
 
 
-
 # Part 4 Wikidata processing
 
-
 Having completed Part 3 of the process above where data is added to 'data' folder
-Next step is to extract the 3rd element from the list - remove the spaces and add to a files
 
-* parsexml10.py            FROM  data  TO    wikidatalabels
+* parsexml10.py         FROM  data  TO    wikidatalabels
+  * Firstly the wikidata titles are processed. The third element  title from the list is extracted. Nest the non ASCII characters are removed and stop words of English language within the titles are also removed. The spaces between words is then removed and the content to a file for additional processing.
 
-* countwikidatawordsonly1.py     FROM wikidatalabels   TO orderedwikidataresults
+  * countwikidatawordsonly1.py     FROM wikidatalabels   TO orderedwikidataresults
+    * Count the number of occurrences of each wikidata title where each count represents a revision to the page title. The value and total count
+    * is output to a file for further processing.
 
-* getmaxwordswikidata1.py   FROM orderedwikidataresults  TO wikidataprocessed  
-
-
+  * getmaxwordswikidata1.py   FROM orderedwikidataresults  TO wikidataprocessed  
+    * Orders the top wikidata revision titles by the mos frequently edited revision articles. The value and total per page item is output to a file for additional processing
 
 
 # Part 5 Twitter and Wikidata analysis
@@ -134,20 +132,17 @@ Next step is to extract the 3rd element from the list - remove the spaces and ad
 
 1. Calculate Jaccards Distance, Jaccards Similarity, kolmogorov-smirnov statistic value and kolmogorov-smirnov p-value
 
+* Initial Execution
+  * Retrieve the list of wikidata items returned from Step 4 within the folder wikidataprocessed. The initial list had to be reduced in size because of out of memory exception errors that resulted when running the statistical formula - File 'SimplifiedList.csv '. All wikidata items with a total revisions of greater than three were added to a new list csv file for use when calculating the statistical measures
 
-<Initial Execution>
- Retrieve the list of wikidata items returned from Step 4 within the folder wikidataprocessed. The initial list had to be reduced in size because of out of memory exception errors that resulted when running the statistical formula. All wikidata items with a total revisions of greater than three were added to a new list csv file for use when calculating the statistical measures
-
-*  The file statistics.py contains the statistical formula for calculating Jaccards Distance, Jaccards Similarity, kolmogorov-smirnov statistic value and kolmogorov-smirnov p-value 
-
-* Each formula is run per n-grams (1-gram, 2-gram, 3-gram, 4-gram)
-
-
-* <This process is run for 100%, 50%, 10% and .1% of both the twitter data and wikidata across each of the n-grams (1-gram, 2-gram, 3-gram, 4-gram)> 
-* The implementation for each is contained within the folder graphs folders 100, 50, 10, 1 with each of the formula above executed for each group.
+  * The file statistics.py contains the statistical formula for calculating Jaccards Distance, Jaccards Similarity, kolmogorov-smirnov statistic value and kolmogorov-smirnov p-value 
+    * Each formula is run per n-grams (1-gram, 2-gram, 3-gram, 4-gram)
+    * <This process is run for 100%, 50%, 10% and .1% of both the twitter data and wikidata across each of the n-grams (1-gram, 2-gram, 3-gram, 4-gram)> 
+    * The implementation for each is contained within the folder graphs folders 100, 50, 10, 1 with each of the formula above executed for each set of data
+    * Note - depending on processing when all the statistical formula are run as one file memory errors may be run. If this occurs run each statistical formula individually by commenting out the remaining statistical calcualtion. Complete each calculation in turn..
 
 
-2. Graphs / Charts  (TODO://  DOCUMENTING IN PROGRESS)
+1. Graphs / Charts  
 
 * This class takes the data output from wikidata processed in Part 4 'wikidataprocessed' and splits the filelds  <name><total> in to 2 fields for the wikidata results in then placed in graphs/wikidatafinal.csv file
 * This is run by execution of the command 'python splitdatatofields.py'

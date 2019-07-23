@@ -37,7 +37,6 @@ def newfilecreation(filename, articlesWriter):
 # A sleep of 5 seconds has been added to allow time for one file to close and the next 
 # writable file to be created
 def closeoldfile(filename):
-        #if counter ==10:
         print(filename)
         filename.flush()
         filename.close()
@@ -87,7 +86,7 @@ def remove_stopwords(sen):
 
 
 counter=0
-csv_folder_path = os.path.join("data")
+csv_folder_path = os.path.join("..\parsewikidata\data")
 # In order to get the list of all files that ends with ".csv"
 # we will get list of all files, and take only the ones that ends with "csv"
 csv_files = [ x for x in os.listdir(csv_folder_path) if x.endswith("csv") ]

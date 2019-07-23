@@ -1,5 +1,6 @@
 # TwiitterWikidata
 Project identifying if a correlation exists between live streamed Twitter hashtags and Wikidata revisions.
+**For each step in the process only a sample file has been provided. Due to the large number and size of files the full data content per step could not be included in the project in git**
 
 
 # Part 1 Twitter Data Live Streaming  
@@ -125,15 +126,15 @@ Having completed Part 3 of the process above where data is added to 'data' folde
 # Part 5 Twitter and Wikidata analysis
 
 
-1. Calculate Jaccard's Distance, Jaccard's Similarity, kolmogorov-smirnov statistic value and kolmogorov-smirnov p-value
+1. Calculate Jaccard's Distance, Jaccard's Similarity, Kolmogorov-Smirnov statistic value and Kolmogorov-Smirnov p-value
 
 * Initial Execution
   * Retrieve the list of wikidata items returned from Step 4 within the folder wikidataprocessed. The initial list had to be reduced in size because of out of memory exception errors that resulted when running the statistical formula - File 'SimplifiedList.csv '. All wikidata items with a total revisions of greater than three were added to a new list csv file for use when calculating the statistical measures
 
   * The file statistics.py contains the statistical formula for calculating Jaccards Distance, Jaccards Similarity, kolmogorov-smirnov statistic value and kolmogorov-smirnov p-value 
     * Each formula is run per n-grams (1-gram, 2-gram, 3-gram, 4-gram)
-    * This statistical formula processing run for 100%, 50%, 10% and .1% of both the twitter data and wikidata across each of the n-grams (1-gram, 2-gram, 3-gram, 4-gram)> 
-    * The implementation for each is contained within the folder graphs folders 100, 50, 10, 1 with each of the formula above executed for each set of data
+    * **This statistical formula processing run for 100%, 50%, 10% and .1% of both the twitter data and wikidata across each of the n-grams (1-gram, 2-gram, 3-gram, 4-gram)>**
+    * **The implementation for each is contained within the folder graphs folders 100, 50, 10, 1 with each of the formula above executed for each set of data**
     * Note - depending on processing when all the statistical formula are run as one file memory errors may be run. If this occurs run each statistical formula individually by commenting out the remaining statistical calcualtion. Complete each calculation in turn.
 
 

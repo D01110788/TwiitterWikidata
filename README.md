@@ -1,6 +1,6 @@
 # TwitterWikidata
 Project identifying if a correlation exists between live streamed Twitter hashtags and Wikidata revisions.
-**For each step in the process only a sample file has been provided. Due to the large number and size of files the full data content per step could not be included in the project in git**
+**For each step in the process only a sample result output file has been provided of the data content. Due to the large number and size of files the full data content per step could not be included in the project content in Git**
 
 
 # Part 1 Twitter Data Live Streaming  
@@ -10,8 +10,8 @@ Part 1 streams live twitter data and stored the results in .json files within th
 1. Install visual studio code
 2. Create the directory structure C://CC on the machine 
 3. Assuming the use has a git account and gitbash installed (if working on windows) clone the project by running 'git clone https://github.com/D01110788/TwiitterWikidata.git' 
-4. From the command prompt within Visual Studio Code, run 'pip install tweepy' to install 'tweepy' that required to stream live twitter data.
-5. Create a twitter account then open the website http://apps.twitter.com and create a developer app.
+4. From the command prompt within Visual Studio Code, run 'pip install tweepy' to install 'tweepy' that is required to stream live twitter data.
+5. Create a twitter account, then open the website http://apps.twitter.com and create a developer app.
 6. The consumer keys and tokens are found within the application details page located located at https://dev.twitter.com/apps (found within the "OAuth settings")
 7. Add the account specific details for consumer key and secret within the file ssstreaming.py of this project replacing the ****** value key and token with those obtained from twitter app.
    
@@ -35,7 +35,7 @@ Part 1 streams live twitter data and stored the results in .json files within th
 
 # Part 2 Twitter Data Parsing
 
-Part 2 parses the twitter live streamed data from Part 1 above, storing the results within the project structure. This processing includes cleaning of the tweets by extracting the hashtags per tweet removing ASCII characters, removing strings of less than minimum length, splitting the tweets in to words, removing stop words of language English and storing the results for additional processing. The strings are split in preparation for applying n-grams. N-grams (1 to 4) is applied to the data. For each of the 4 n-gram output the spaces are stripped from the string, the hashtag occurrences are counted and ordered by the most frequent for further processing.
+Part 2 parses the twitter live streamed data from Part 1 above, storing the results within the project structure. This processing includes cleaning of the tweets by extracting the hashtags per tweet, removing ASCII characters, removing strings of less than minimum length, splitting the tweets in to words, removing stop words of language English and storing the results for additional processing. The strings are split in preparation for applying n-grams. N-grams (1 to 4) is applied to the data. For each of the 4 n-gram output the spaces are stripped from the string, the hashtag occurrences are counted and ordered by the most frequent for further processing.
 
 1. wordsonly1.py    - FROM  'streamtwitter/tweets' folder   ->   TO 'tweetwords' folder 
    * Take the tweets files in '.json' format  and parses the tweet removing the hashtag, removing non ASCII characters, validate the line contains at least 2 characters and placing the content in the 'tweetwords' folder with file format 'Words_Only.<date>.csv' for additional processing. If the number of words added to the file is greater than or equal to 5000, a new file is created or if the end of the .json file is reached.

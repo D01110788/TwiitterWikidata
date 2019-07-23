@@ -1,4 +1,4 @@
-# TwiitterWikidata
+# TwitterWikidata
 Project identifying if a correlation exists between live streamed Twitter hashtags and Wikidata revisions.
 **For each step in the process only a sample file has been provided. Due to the large number and size of files the full data content per step could not be included in the project in git**
 
@@ -21,11 +21,12 @@ Part 1 streams live twitter data and stored the results in .json files within th
 8. After the step above, you will be redirected to your app's page.
 9. Create an access token under the the "Your access token" section.  The access tokens located in the application details page located at  https://dev.twitter.com/apps (found within the "Your access token") 
 10. Add access token and secret specific tokens within the file sstreaming.py of this project replacing the ***** value token and secret with those obtained from the twitter app.
+    
          access_token="*****************************************"
          access_token_secret="****************************************"
 
 11. Navigate to C:\CC\TwiitterWikidata\twitter\streamtwitter
-12. Run 'python sstreaming.py
+12. Run 'python sstreaming.py'
 13. The data will be streamed to the folder C:/CC/TwiitterWikidata/twitter/streamtwitter/tweets/. 
     * An example of the initial file and overflow file has been added as a sample within the tweets folder of this project. 
     * If an error occurs streaming the data the data will auto start again starting with the file 'myprefix.<date-time>.json' and the overflow file 'streamer.<date-time>.json'
@@ -132,7 +133,7 @@ Having completed Part 3 of the process above where data is added to 'data' folde
   * Retrieve the list of wikidata items returned from Step 4 within the folder wikidataprocessed. The initial list had to be reduced in size because of out of memory exception errors that resulted when running the statistical formula - File 'SimplifiedList.csv '. All wikidata items with a total revisions of greater than three were added to a new list csv file for use when calculating the statistical measures
 
   * The file statistics.py contains the statistical formula for calculating Jaccards Distance, Jaccards Similarity, kolmogorov-smirnov statistic value and kolmogorov-smirnov p-value 
-    * Each formula is run per n-grams (1-gram, 2-gram, 3-gram, 4-gram)
+    * **Each formula is run per n-grams (1-gram, 2-gram, 3-gram, 4-gram)**
     * **This statistical formula processing run for 100%, 50%, 10% and .1% of both the twitter data and wikidata across each of the n-grams (1-gram, 2-gram, 3-gram, 4-gram)>**
     * **The implementation for each is contained within the folder graphs folders 100, 50, 10, 1 with each of the formula above executed for each set of data**
     * Note - depending on processing when all the statistical formula are run as one file memory errors may be run. If this occurs run each statistical formula individually by commenting out the remaining statistical calcualtion. Complete each calculation in turn.

@@ -25,9 +25,9 @@ Part 1 streams live twitter data and stored the results in .json files within th
          access_token="*****************************************"
          access_token_secret="****************************************"
 
-11. Navigate to C:\CC\TwiitterWikidata\twitter\streamtwitter
+11. Navigate to C:\CC\TwitterWikidata\twitter\streamtwitter
 12. Run 'python sstreaming.py'
-13. The data will be streamed to the folder C:/CC/TwiitterWikidata/twitter/streamtwitter/tweets/. 
+13. The data will be streamed to the folder C:/CC/TwitterWikidata/twitter/streamtwitter/tweets/. 
     * An example of the initial file and overflow file has been added as a sample within the tweets folder of this project. 
     * If an error occurs streaming the data the data will auto start again starting with the file 'myprefix."current_date_time".json' and the overflow file 'streamer.""current_date_time".json'
 
@@ -94,17 +94,17 @@ Part 2 parses the twitter live streamed data from Part 1 above, storing the resu
 7. Assume that visual studio code https://visualstudio.microsoft.com/vs/ has already been installed and the project code has already been cloned and as outlined in Part 1 above.
 
 
-8. Open a DOS prompt within visual studio code and navigate to C:\CC\TwiitterWikidata\twitter\streamtwitter
+8. Open a DOS prompt within visual studio code and navigate to C:\CC\TwitterWikidata\twitter\streamtwitter
 9.  The project python file 'parsexml.py' exists on the project and this will parse the wikidata xml file containing the revision data
 10. The parsed data is added to a new additional folder here 'data'
 11. Go to this site https://dumps.wikimedia.org/wikidatawiki/"wikidata dump date"/  (the selected date to download the wikidata dumps containing the wikidata metadata revision files)
     * Download each wikidata dump xml files for parsing for example wikidatawiki-20190601-stub-meta-history1.xml.gz
     * Select each one and unzip to a location - u will get an xml file  E.G. c:/wikidata/
     * Now start visual studio code from your start menu
-    * On the console you will see add folder - navigate to C:\CC\TwiitterWikidata 
+    * On the console you will see add folder - navigate to C:\CC\TwitterWikidata 
 12. Ready to run the code
 13. To run the code select 'terminal - new terminal' on the top menus in visual studio code- this will open a cmd terminal at the bottom of the page
-14. Navigate to the location C:\CC\TwiitterWikidata\wikidata\parsewikidata 
+14. Navigate to the location C:\CC\TwitterWikidata\wikidata\parsewikidata 
 15. Enter the command  'python parsexml.py' and run it.
 16. You will see number output on the command prompt. This is a print out statement within the code showing the count of the number of revision items processed and can be comment out if not required within the code but validates the xml file is being processed successfully.
 17. Additionally the output for the processed data can be seen in the output within the data folder .csv file that with 1 row per processed revision.  The data output is in the format "'pageid', 'pagetitle',  'label', 'revisionid', 'timestamp', 'comment', 'parentid'"

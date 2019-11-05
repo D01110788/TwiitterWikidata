@@ -9,7 +9,7 @@ Part 1 streams live twitter data and stored the results in .json files within th
 
 1. Install visual studio code
 2. Create the directory structure C://CC on the machine 
-3. Assuming the use has a git account and gitbash installed (if working on windows) clone the project by running 'git clone https://github.com/D01110788/TwiitterWikidata.git' 
+3. Assuming the use has a git account and gitbash installed (if working on windows) clone the project by running 'git clone https://github.com/D01110788/TwitterWikidata.git' 
 4. From the command prompt within Visual Studio Code, run 'pip install tweepy' to install 'tweepy' that is required to stream live twitter data.
 5. Create a twitter account, then open the website http://apps.twitter.com and create a developer app.
 6. The consumer keys and tokens are found within the application details page located located at https://dev.twitter.com/apps (found within the "OAuth settings")
